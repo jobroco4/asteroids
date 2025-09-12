@@ -16,6 +16,7 @@ def main():
                 pygame.quit()
                 return
         screen.fill((0, 0, 0))
+        player.update(dt)
         player.draw(screen)
         pygame.display.flip()
         pygame.time.Clock().tick(60)   # Limit to 60 FPS

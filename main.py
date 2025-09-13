@@ -18,6 +18,8 @@ def main():
     Asteroid.containers = (asteroids, updatables, drawables)
     AsteroidField.containers = (updatables)
     asteroid_field = AsteroidField()
+    shots = pygame.sprite.Group()
+    Shot.containers = (shots, updatables, drawables)
 
     while True:
         for event in pygame.event.get():
@@ -26,6 +28,10 @@ def main():
                 return
         screen.fill((0, 0, 0))
         updatables.update(dt)
+        for asteroid in asteroids:
+            if player.collision(asteroid):
+                print("Game Over!")
+                raise SystemExit
         for drawable in drawables:
             drawable.draw(screen)
         pygame.display.flip()
